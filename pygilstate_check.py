@@ -1,12 +1,12 @@
 import ctypes
 import glob
-from os.path import abspath, dirname, join
+from os.path import realpath, dirname, join
 import sys
 
 __all__ = ['gilstate_check', 'gilstate_check_py']
 
 _ext = {'win32':'pyd', 'darwin':'dylib'}.get(sys.platform, 'so')
-_libname = join(abspath(dirname(__name__)), '_pygilstate_check.'+_ext)
+_libname = join(dirname(realpath(__file__)), '_pygilstate_check.'+_ext)
 
 _lib = ctypes.cdll.LoadLibrary(_libname)
 _pylib = ctypes.pydll.LoadLibrary(_libname)
